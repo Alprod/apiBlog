@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\DateImmutableType;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ApiResource()
  */
 class Article
 {
@@ -34,7 +36,7 @@ class Article
 
     public function __construct()
     {
-        $this->createdAt = new DateImmutableType();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
 

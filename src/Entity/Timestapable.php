@@ -16,10 +16,10 @@ trait Timestapable
     private DateTimeInterface $createdAt;
 
     /**
-     * @var DateTimeInterface
+     * @var DateTimeInterface|null
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private DateTimeInterface $updateAt;
+    private ?DateTimeInterface $updateAt;
 
 
     public function getCreatedAt(): DateTimeInterface
@@ -33,8 +33,10 @@ trait Timestapable
     }
 
 
-    public function setUpdateAt(?DateTimeInterface $updateAt): void
+    public function setUpdateAt(?DateTimeInterface $updateAt)
     {
         $this -> updateAt = $updateAt;
+        return $this;
     }
+
 }
