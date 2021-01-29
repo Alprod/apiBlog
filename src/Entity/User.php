@@ -4,24 +4,30 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\DateImmutableType;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository", repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @ApiResource(
+ *     collectionOperations={"get"={"normalization_context"={"groups"="user_read"}}, "post"},
+ *     itemOperations={"get"={"normalization_context"={"groups"="user_details_read"}},"put","patch","delete"}
+ * )
  */
 class User implements UserInterface
 {
     use ResourceId;
     use Timestapable;
+
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"user_read", "user_details_read","article_details_read"})
      */
     private ?string $email;
 
@@ -38,6 +44,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="author", orphanRemoval=true)
+     * @Groups({"user_details_read"})
      */
     private Collection $articles;
 
@@ -45,7 +52,7 @@ class User implements UserInterface
     {
         $this->articles = new ArrayCollection();
 
-        $this->createdAt = new DateImmutableType();
+        $this->createdAt = new \DateTimeImmutable();
 
     }
 
@@ -111,6 +118,7 @@ class User implements UserInterface
     public function getSalt(): ?string
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
+        return 'adn';
     }
 
     /**
