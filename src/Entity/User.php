@@ -11,13 +11,24 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Controller\UserUpdatedAt;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository", repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @ApiResource(
  *     collectionOperations={"get"={"normalization_context"={"groups"="user_read"}}, "post"},
- *     itemOperations={"get"={"normalization_context"={"groups"="user_details_read"}},"put","patch","delete"}
+ *     itemOperations={
+ *     "get"={"normalization_context"={"groups"="user_details_read"}},
+ *     "put",
+ *     "patch",
+ *     "delete",
+ *     "put_user_updated"={
+ *          "method"="put",
+ *          "path"="/users/{id}/user-updated",
+ *          "controller"=UserUpdatedAt::class
+ *          }
+ *     }
  * )
  */
 class User implements UserInterface
@@ -27,7 +38,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"user_read", "user_details_read","article_details_read"})
+     * @Groups({"user_read", "user_details_read","article_details_read", "article_read"})
      */
     private ?string $email;
 
@@ -47,6 +58,24 @@ class User implements UserInterface
      * @Groups({"user_details_read"})
      */
     private Collection $articles;
+
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     * @Groups({"user_read", "user_details_read","article_details_read"})
+     */
+    private ?string $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     * @Groups({"user_read", "user_details_read","article_details_read"})
+     */
+    private ?string $lastname;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups({"user_read", "user_details_read","article_details_read", "article_read"})
+     */
+    private ?string $pseudo;
 
     public function __construct()
     {
@@ -156,6 +185,42 @@ class User implements UserInterface
                 $article->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(?string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
