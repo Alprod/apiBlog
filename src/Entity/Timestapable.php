@@ -20,7 +20,7 @@ trait Timestapable
     /**
      * @var DateTimeInterface|null
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"article_read","article_details_read","user_details_read", "user_read"})
+     * @Groups({"article_read","article_details_read","user_details_read", "user _read"})
      */
     private ?DateTimeInterface $updateAt;
 
