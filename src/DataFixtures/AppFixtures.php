@@ -30,7 +30,10 @@ class AppFixtures extends Fixture
                 ->setPassword($passHash)
                 ->setPseudo($faker->userName)
                 ->setFirstname($faker->firstName)
-                ->setLastname($faker->lastName);
+                ->setLastname($faker->lastName)
+                ->setStatus($faker->boolean)
+                ->setAge($faker->biasedNumberBetween(18,60));
+
 
 
             $manager->persist($user);

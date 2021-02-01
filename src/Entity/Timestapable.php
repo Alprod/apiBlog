@@ -13,14 +13,14 @@ trait Timestapable
     /**
      * @var DateTimeInterface
      * @ORM\Column(type="datetime")
-     * @Groups({"article_read","article_details_read","user_details_read", "user_read"})
+     * @Groups({"user_read", "user_details_read","article_details_read","article_read"})
      */
     private DateTimeInterface $createdAt;
 
     /**
      * @var DateTimeInterface|null
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"article_read","article_details_read","user_details_read", "user _read"})
+     * @Groups({"user_read", "user_details_read","article_details_read","article_read"})
      */
     private ?DateTimeInterface $updateAt;
 
