@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\NumericFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -30,6 +38,13 @@ use App\Controller\UserUpdatedAt;
  *          }
  *     }
  * )
+ * @ApiFilter(SearchFilter::class, properties={"email":"partial","lastname":"start"})
+ * @ApiFilter(DateFilter::class, properties={"createdAt"})
+ * @ApiFilter(BooleanFilter::class, properties={"status"})
+ * @ApiFilter(NumericFilter::class, properties={"age"})
+ * @ApiFilter(RangeFilter::class, properties={"age"})
+ * @ApiFilter(ExistsFilter::class, properties={"updateAt"})
+ * @ApiFilter(OrderFilter::class, properties={"id"})
  */
 class User implements UserInterface
 {
@@ -76,6 +91,18 @@ class User implements UserInterface
      * @Groups({"user_read", "user_details_read","article_details_read", "article_read"})
      */
     private ?string $pseudo;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({"user_read", "user_details_read","article_details_read", "article_read"})
+     */
+    private ?bool $status;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Groups({"user_read", "user_details_read","article_details_read", "article_read"})
+     */
+    private ?int $age;
 
     public function __construct()
     {
@@ -221,6 +248,30 @@ class User implements UserInterface
     public function setPseudo(?string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->age;
+    }
+
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
 
         return $this;
     }
