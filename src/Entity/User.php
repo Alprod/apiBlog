@@ -17,6 +17,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\UserUpdatedAt;
@@ -65,6 +66,7 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Groups({"user_details_read"})
      */
     private string $password;
 
@@ -104,11 +106,14 @@ class User implements UserInterface
      */
     private ?int $age;
 
+    private UserPasswordEncoderInterface $_encoder;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
 
         $this->createdAt = new \DateTimeImmutable();
+        $this->status = false;
 
     }
 

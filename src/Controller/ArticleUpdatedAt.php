@@ -11,7 +11,7 @@ class ArticleUpdatedAt
     public function __invoke(Article $data): Article
     {
         // TODO: Implement __invoke() method.
-        $data->setUpdateAt(new \DateTimeImmutable("tomorrow"));
+        $data->setUpdateAt(new \DateTimeImmutable("now"));
 
         return $data;
     }
