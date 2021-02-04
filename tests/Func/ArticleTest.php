@@ -21,7 +21,6 @@ class ArticleTest extends AbstractEndPoint
         );
         $responseContent = $response->getContent();
         $responseDecoded = json_decode($responseContent);
-
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecoded);
@@ -32,18 +31,20 @@ class ArticleTest extends AbstractEndPoint
 
     /**
      * @param array $res
+     * @return int
      * @throws Exception
      * @depends testArticles
      */
-    public function testGetArticles(array $res): void
+    public function testGetArticles(array $res): int
     {
         if(0 === count($res)){
             throw new Exception("Use this command => bin/console d:f:l (no data found)", 404);
         }
+        $id = print_r($res[0]->id);
 
         $response = $this->getResponseFromRequest(
             Request::METHOD_GET,
-            '/api/articles/'.$res[0]->id,
+            '/api/articles/'.$id,
             '',
             [],
             false
@@ -51,6 +52,7 @@ class ArticleTest extends AbstractEndPoint
 
         $responseContent = $response->getContent();
         $responseDecode = json_decode($responseContent);
+
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
