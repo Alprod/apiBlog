@@ -29,7 +29,9 @@ class UserAuthorizationChecker
     {
         $this->isAuthenticated();
 
-        if ($this->isMethodAllowed($method) && $user->getId() !== $this->user->getId()){
+        if ($this->isMethodAllowed($method) &&
+            $user->getId() !== $this->user->getId()
+        ) {
             $errorMessage = "Ce ne sont pas vos ressource";
             throw new UnauthorizedHttpException($errorMessage, $errorMessage);
         }

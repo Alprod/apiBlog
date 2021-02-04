@@ -30,7 +30,10 @@ class ArticleAuthorizationChecker
     {
         $this->isAuthenticated();
 
-    if ($this->isMethodAllowed($method) && $article->getAuthor()->getId() !== $this->user->getId()){
+    if ($this->isMethodAllowed($method) &&
+        /** @var Article $article */
+        $article->getAuthor()->getId() !== $this->user->getId()
+    ) {
             $errorMessage = "Ce ne sont pas vos ressource";
             throw new UnauthorizedHttpException($errorMessage, $errorMessage);
         }
