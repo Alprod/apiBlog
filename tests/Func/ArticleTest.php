@@ -40,11 +40,11 @@ class ArticleTest extends AbstractEndPoint
         if(0 === count($res)){
             throw new Exception("Use this command => bin/console d:f:l (no data found)", 404);
         }
-        $id = print_r($res[0]->id);
+
 
         $response = $this->getResponseFromRequest(
             Request::METHOD_GET,
-            '/api/articles/'.$id,
+            '/api/articles/'.$res[0]->id,
             '',
             [],
             false
@@ -57,6 +57,6 @@ class ArticleTest extends AbstractEndPoint
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
         self::assertNotSame($res[0], $responseDecode);
-        self::assertContains("author", $responseContent);
+        self::assertContains("author", $responseDecode);
     }
 }

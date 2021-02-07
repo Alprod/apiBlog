@@ -32,7 +32,7 @@ class UserTest extends AbstractEndPoint
 
     }
 
-    public function testPostsUser(): void
+    public function testPostsUser(): int
     {
         $response = $this->getResponseFromRequest(
             Request::METHOD_POST,
@@ -43,10 +43,12 @@ class UserTest extends AbstractEndPoint
         );
 
         $responseContent = $response->getContent();
-        $responseDecode = json_decode($responseContent);
+        $responseDecode = json_decode($responseContent, true);
         self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
+
+        return $responseDecode['id'];
     }
 
     public function testGetDefaultUser(): int
@@ -63,8 +65,145 @@ class UserTest extends AbstractEndPoint
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
+
+        return $responseDecode[0]['id'];
     }
 
+
+    /**
+     * @depends testGetDefaultUser
+     * @param int $id
+     */
+    public function testPutDefaultUser(int $id): void
+    {
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_PUT,
+            '/api/users/'.$id,
+            $this->getPayload(),
+            [],
+            false
+        );
+
+        $responseContent = $response->getContent();
+        $responseDecode = json_decode($responseContent);
+        self::assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
+        self::assertJson($responseContent);
+        self::assertNotEmpty($responseDecode);
+    }
+
+    /**
+     * @depends testGetDefaultUser
+     * @param int $id
+     */
+    public function testPatchDefaultUser(int $id): void
+    {
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_PATCH,
+            '/api/users/'.$id,
+            $this->getPayload(),
+            [],
+            false
+        );
+
+        $responseContent = $response->getContent();
+        $responseDecode = json_decode($responseContent);
+        self::assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
+        self::assertJson($responseContent);
+        self::assertNotEmpty($responseDecode);
+    }
+
+    /**
+     * @depends testGetDefaultUser
+     * @param int $id
+     */
+    public function testDeleteDefaultUser(int $id): void
+    {
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_DELETE,
+            '/api/users/'.$id,
+            $this->getPayload(),
+            [],
+            false
+        );
+
+        $responseContent = $response->getContent();
+        $responseDecode = json_decode($responseContent);
+        self::assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
+        self::assertJson($responseContent);
+        self::assertNotEmpty($responseDecode);
+    }
+
+    /**
+     * @depends testPostsUser
+     * @param int $id
+     */
+    public function testDeleteOtherUserWithJWT(int $id): void
+    {
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_DELETE,
+            '/api/users/'.$id
+        );
+
+        $responseContent = $response->getContent();
+        $responseDecode = json_decode($responseContent, true);
+        self::assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
+        self::assertJson($responseContent);
+        self::assertNotEmpty($responseDecode);
+    }
+
+
+    /**
+     * @depends testGetDefaultUser
+     * @param int $id
+     * @return int
+     */
+    public function testDeleteDefaultUserWithJWT(int $id): int
+    {
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_DELETE,
+            '/api/users/'.$id
+        );
+        self::assertEquals(Response::HTTP_NO_CONTENT, $response->getStatusCode());
+    }
+
+    public function testPostsDefaultUser(): void
+    {
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_POST,
+            '/api/users',
+            json_encode(AppFixtures::DEFAULT_USER),
+            [],
+            false
+        );
+
+        $responseContent = $response->getContent();
+        $responseDecode = json_decode($responseContent, true);
+        self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
+        self::assertJson($responseContent);
+        self::assertNotEmpty($responseDecode);
+    }
+
+    public function testPostsSameDefaultUser(): void
+    {
+        $response = $this->getResponseFromRequest(
+            Request::METHOD_POST,
+            '/api/users',
+            json_encode(AppFixtures::DEFAULT_USER),
+            [],
+            false
+        );
+
+        $responseContent = $response->getContent();
+        $responseDecode = json_decode($responseContent, true);
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertJson($responseContent);
+        self::assertNotEmpty($responseDecode);
+    }
+
+
+    /**
+     * @return string
+     */
     public function getPayload(): string
     {
         $fake = Factory::create();
