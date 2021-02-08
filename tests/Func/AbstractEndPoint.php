@@ -24,7 +24,8 @@ abstract class AbstractEndPoint extends WebTestCase
         string $uri,
         string $payload = '',
         array $parameter = [],
-        bool $withAuthentication = true): Response{
+        bool $withAuthentication = true): Response
+    {
         $client = $this->createAuthenticationClient($withAuthentication);
 
         $client->request(

@@ -10,7 +10,7 @@ use Faker\Factory;
 
 class UserTest extends AbstractEndPoint
 {
-    private string $userPayload = '{"email":"%s", "password":"alprod"}';
+    private string $userPayload = '{"email":"%s", "password":"Password34"}';
 
     public function testGetUsers(): void
     {
@@ -195,7 +195,7 @@ class UserTest extends AbstractEndPoint
 
         $responseContent = $response->getContent();
         $responseDecode = json_decode($responseContent, true);
-        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_UNPROCESSABLE_ENTITY, $response->getStatusCode());
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
     }

@@ -31,11 +31,11 @@ class ArticleTest extends AbstractEndPoint
 
     /**
      * @param array $res
-     * @return int
+     * @return void
      * @throws Exception
      * @depends testArticles
      */
-    public function testGetArticles(array $res): int
+    public function testGetArticles(array $res): void
     {
         if(0 === count($res)){
             throw new Exception("Use this command => bin/console d:f:l (no data found)", 404);
@@ -57,6 +57,6 @@ class ArticleTest extends AbstractEndPoint
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
         self::assertNotSame($res[0], $responseDecode);
-        self::assertContains("author", $responseDecode);
+        self::assertContains("author", $responseContent);
     }
 }
