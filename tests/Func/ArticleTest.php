@@ -31,20 +31,20 @@ class ArticleTest extends AbstractEndPoint
 
     /**
      * @param array $res
-     * @return int
+     * @return void
      * @throws Exception
      * @depends testArticles
      */
-    public function testGetArticles(array $res): int
+    public function testGetArticles(array $res): void
     {
         if(0 === count($res)){
             throw new Exception("Use this command => bin/console d:f:l (no data found)", 404);
         }
-        $id = print_r($res[0]->id);
+
 
         $response = $this->getResponseFromRequest(
             Request::METHOD_GET,
-            '/api/articles/'.$id,
+            '/api/articles/'.$res[0]->id,
             '',
             [],
             false

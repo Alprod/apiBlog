@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-    const DEFAULT_USER = ['email'=>'alain@orange.fr', 'password'=>'password'];
+    const DEFAULT_USER = ['email'=>'alain@orange.fr', 'password'=>'Password43'];
     private UserPasswordEncoderInterface $_encoder;
 
     public function __construct(UserPasswordEncoderInterface $encoder)
@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
         for ($u=0 ; $u<10; $u++){
             $user = new User();
 
-            $passHash = $this->_encoder->encodePassword($user, 'alprod');
+            $passHash = $this->_encoder->encodePassword($user, 'Password34');
 
             $user->setEmail($faker->email)
                 ->setPassword($passHash)

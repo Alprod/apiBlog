@@ -17,14 +17,15 @@ abstract class AbstractEndPoint extends WebTestCase
                                         'CONTENT_TYPE'=>'application/json'];
     protected string $tokenNotFound = 'JWT not found';
     protected string $notYourResource = 'It\'s not your resource';
-    protected string $loginPayload = '{"email":"%s", "password":"%s"}';
+    protected string $loginPayload = '{"username":"%s", "password":"%s"}';
 
     public function getResponseFromRequest(
         string $method,
         string $uri,
         string $payload = '',
         array $parameter = [],
-        bool $withAuthentication = true): Response{
+        bool $withAuthentication = true): Response
+    {
         $client = $this->createAuthenticationClient($withAuthentication);
 
         $client->request(
@@ -38,7 +39,7 @@ abstract class AbstractEndPoint extends WebTestCase
         return $client->getResponse();
     }
 
-    protected function createAuthenticationClient($withAuthentication): KernelBrowser
+    protected function createAuthenticationClient(bool $withAuthentication): KernelBrowser
     {
         $client = self::createClient();
 

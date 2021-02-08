@@ -17,10 +17,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\UserUpdatedAt;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository", repositoryClass=UserRepository::class)
@@ -46,6 +48,7 @@ use App\Controller\UserUpdatedAt;
  * @ApiFilter(RangeFilter::class, properties={"age"})
  * @ApiFilter(ExistsFilter::class, properties={"updateAt"})
  * @ApiFilter(OrderFilter::class, properties={"id"})
+ * @UniqueEntity("email", message="Cette email est déjà utilisé")
  */
 class User implements UserInterface
 {
@@ -55,6 +58,8 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"user_read", "user_details_read","article_details_read", "article_read"})
+     * @Assert\NotBlank(message="L'email est obligatoire")
+     * @Assert\Email(message="Le format de l'email est invalide")
      */
     private ?string $email;
 
@@ -67,6 +72,17 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Groups({"user_details_read"})
+     * @Assert\NotBlank(message="Le Mot de Passe est obligatoire")
+     * @Assert\Length(
+     *     min=8,
+     *     max=16,
+     *     minMessage="Votre Mot de Passe doit contenir au minimum {{ limit }} caractères",
+     *     maxMessage="Vous dépassez la longuer maximal de votre Mot de Passe qui est de {{ limit }} caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern= "/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/",
+     *     message="Désolé mais {{ value }}, doit comporter au moins 8 caractères, 1 chiffre, un caractère majuscule, un caractère minuscule."
+     * )
      */
     private string $password;
 
@@ -91,6 +107,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * @Groups({"user_read", "user_details_read","article_details_read", "article_read"})
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="Votre pseudo doit contenir au minimum {{ limit }} caractères"
+     * )
      */
     private ?string $pseudo;
 
