@@ -16,7 +16,7 @@ abstract class AbstractEndPoint extends WebTestCase
                                         'ACCEPT'=>'application/json',
                                         'CONTENT_TYPE'=>'application/json'];
     protected string $tokenNotFound = 'JWT not found';
-    protected string $notYourResource = 'It\'s not your resource';
+    protected string $notYourResource = 'Ce ne sont pas vos ressource';
     protected string $loginPayload = '{"username":"%s", "password":"%s"}';
 
     public function getResponseFromRequest(

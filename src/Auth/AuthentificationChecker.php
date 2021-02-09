@@ -3,7 +3,7 @@
 
 namespace App\Auth;
 
-use App\Exceptions\AuthentificationException;
+use App\Events\AuthentificationException;
 use Symfony\Component\HttpFoundation\Response as Responses;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;

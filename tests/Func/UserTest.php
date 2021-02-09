@@ -149,15 +149,16 @@ class UserTest extends AbstractEndPoint
         self::assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
+        self::assertEquals($this->notYourResource, $responseDecode['message']);
     }
 
 
     /**
      * @depends testGetDefaultUser
      * @param int $id
-     * @return int
+     * @return void
      */
-    public function testDeleteDefaultUserWithJWT(int $id): int
+    public function testDeleteDefaultUserWithJWT(int $id): void
     {
         $response = $this->getResponseFromRequest(
             Request::METHOD_DELETE,
