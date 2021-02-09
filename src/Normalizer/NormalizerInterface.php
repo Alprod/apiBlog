@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Normalizer;
 
-
 interface NormalizerInterface
 {
-    public function normalise(\Exception $exception):array;
-    public function supports(\Exception $exception):bool;
+    public function normalise(\Exception $exception): array;
+
+    public function supports(\Exception $exception): bool;
 }

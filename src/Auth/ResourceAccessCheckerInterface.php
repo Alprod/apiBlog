@@ -6,7 +6,7 @@ namespace App\Auth;
 
 interface ResourceAccessCheckerInterface
 {
-    const MESSAGE_ERROR = "Ce ne sont pas vos ressource";
-    public function canAccess(?int $id):void;
+    const MESSAGE_ERROR = 'Ce ne sont pas vos ressource';
 
+    public function canAccess(?int $id): void;
 }

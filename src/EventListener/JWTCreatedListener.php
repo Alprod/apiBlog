@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\EventListener;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
@@ -9,7 +8,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class JWTCreatedListener
 {
-
     private UserInterface $user;
 
     public function __construct(Security $security)
@@ -22,6 +20,5 @@ class JWTCreatedListener
         $payload = $event->getData();
         $payload['createdAt'] = $this->user->getCreatedAt();
         $event->setData($payload);
-
     }
 }

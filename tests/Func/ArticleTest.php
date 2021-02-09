@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Func;
-
 
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,19 +26,15 @@ class ArticleTest extends AbstractEndPoint
         return $responseDecoded;
     }
 
-
     /**
-     * @param array $res
-     * @return void
      * @throws Exception
      * @depends testArticles
      */
     public function testGetArticles(array $res): void
     {
-        if(0 === count($res)){
-            throw new Exception("Use this command => bin/console d:f:l (no data found)", 404);
+        if (0 === count($res)) {
+            throw new Exception('Use this command => bin/console d:f:l (no data found)', 404);
         }
-
 
         $response = $this->getResponseFromRequest(
             Request::METHOD_GET,

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Events;
-
 
 use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Entity\User;
@@ -20,20 +18,18 @@ class PasswordEncoderSubscriber implements EventSubscriberInterface
         $this->_encoder = $encoder;
     }
 
-
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::VIEW=>['encodePassword', EventPriorities::PRE_WRITE]
+            KernelEvents::VIEW => ['encodePassword', EventPriorities::PRE_WRITE],
         ];
     }
-
 
     public function encodePassword(ViewEvent $event)
     {
         $user = $event->getControllerResult();
 
-        if($user instanceof User){
+        if ($user instanceof User) {
             $passHash = $this->_encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($passHash);
         }
