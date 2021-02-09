@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Auth;
 
 use App\Exceptions\ResourceAccessException;
@@ -11,6 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class ResourceAccessChecker implements ResourceAccessCheckerInterface
 {
     private ?UserInterface $user;
+
     public function __construct(Security $security)
     {
         $this->user = $security->getUser();
@@ -18,10 +18,8 @@ class ResourceAccessChecker implements ResourceAccessCheckerInterface
 
     public function canAccess(?int $id): void
     {
-        if($this->user->getId() !== $id){
-            throw new ResourceAccessException(
-                Responses::HTTP_UNAUTHORIZED,
-                self::MESSAGE_ERROR);
+        if ($this->user->getId() !== $id) {
+            throw new ResourceAccessException(Responses::HTTP_UNAUTHORIZED, self::MESSAGE_ERROR);
         }
     }
 }

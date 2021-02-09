@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Func;
-
 
 use App\DataFixtures\AppFixtures;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -13,8 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class AbstractEndPoint extends WebTestCase
 {
     protected array $serverInformation = [
-                                        'ACCEPT'=>'application/json',
-                                        'CONTENT_TYPE'=>'application/json'];
+                                        'ACCEPT' => 'application/json',
+                                        'CONTENT_TYPE' => 'application/json', ];
     protected string $tokenNotFound = 'JWT not found';
     protected string $notYourResource = 'Ce ne sont pas vos ressource';
     protected string $loginPayload = '{"username":"%s", "password":"%s"}';
@@ -24,8 +22,8 @@ abstract class AbstractEndPoint extends WebTestCase
         string $uri,
         string $payload = '',
         array $parameter = [],
-        bool $withAuthentication = true): Response
-    {
+        bool $withAuthentication = true
+    ): Response {
         $client = $this->createAuthenticationClient($withAuthentication);
 
         $client->request(
@@ -34,7 +32,8 @@ abstract class AbstractEndPoint extends WebTestCase
             $parameter,
             [],
             $this->serverInformation,
-            $payload);
+            $payload
+        );
 
         return $client->getResponse();
     }
@@ -43,7 +42,7 @@ abstract class AbstractEndPoint extends WebTestCase
     {
         $client = self::createClient();
 
-        if(!$withAuthentication){
+        if (!$withAuthentication) {
             return $client;
         }
         $client->request(
@@ -52,8 +51,9 @@ abstract class AbstractEndPoint extends WebTestCase
             [],
             [],
             $this->serverInformation,
-            sprintf($this->loginPayload, AppFixtures::DEFAULT_USER['email'],AppFixtures::DEFAULT_USER['password'] ));
-        $data = json_decode($client->getResponse()->getContent(),true);
+            sprintf($this->loginPayload, AppFixtures::DEFAULT_USER['email'], AppFixtures::DEFAULT_USER['password'])
+        );
+        $data = json_decode($client->getResponse()->getContent(), true);
         $client->setServerParameter('HTTP_Authorization', sprintf('Bearer %s', $data['token']));
 
         return $client;

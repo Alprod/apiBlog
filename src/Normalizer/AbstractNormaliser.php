@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Normalizer;
 
-
 use App\Services\ExceptionNormaliserFormatterInterface;
 
 abstract class AbstractNormaliser implements NormalizerInterface
@@ -16,8 +15,8 @@ abstract class AbstractNormaliser implements NormalizerInterface
         array $exceptionTypes,
         ExceptionNormaliserFormatterInterface $exceptionNormaliserFormatter
     ) {
-        $this -> exceptionTypes = $exceptionTypes;
-        $this -> exceptionNormaliserFormatter = $exceptionNormaliserFormatter;
+        $this->exceptionTypes = $exceptionTypes;
+        $this->exceptionNormaliserFormatter = $exceptionNormaliserFormatter;
     }
 
     public function supports(\Exception $exception): bool

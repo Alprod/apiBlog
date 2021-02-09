@@ -1,12 +1,11 @@
 <?php
 
-
 namespace App\Tests\Func;
 
 use App\DataFixtures\AppFixtures;
+use Faker\Factory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Faker\Factory;
 
 class UserTest extends AbstractEndPoint
 {
@@ -17,9 +16,9 @@ class UserTest extends AbstractEndPoint
         $response = $this->getResponseFromRequest(
             Request::METHOD_GET,
             '/api/users',
-        '',
-        [],
-        false
+            '',
+            [],
+            false
         );
         $responseContent = $response->getContent();
 
@@ -28,8 +27,6 @@ class UserTest extends AbstractEndPoint
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
-
-
     }
 
     public function testPostsUser(): int
@@ -57,7 +54,7 @@ class UserTest extends AbstractEndPoint
             Request::METHOD_GET,
             '/api/users',
             '',
-            ["email" => AppFixtures::DEFAULT_USER['email']],
+            ['email' => AppFixtures::DEFAULT_USER['email']],
             false
         );
         $responseContent = $response->getContent();
@@ -69,10 +66,8 @@ class UserTest extends AbstractEndPoint
         return $responseDecode[0]['id'];
     }
 
-
     /**
      * @depends testGetDefaultUser
-     * @param int $id
      */
     public function testPutDefaultUser(int $id): void
     {
@@ -93,7 +88,6 @@ class UserTest extends AbstractEndPoint
 
     /**
      * @depends testGetDefaultUser
-     * @param int $id
      */
     public function testPatchDefaultUser(int $id): void
     {
@@ -114,7 +108,6 @@ class UserTest extends AbstractEndPoint
 
     /**
      * @depends testGetDefaultUser
-     * @param int $id
      */
     public function testDeleteDefaultUser(int $id): void
     {
@@ -135,7 +128,6 @@ class UserTest extends AbstractEndPoint
 
     /**
      * @depends testPostsUser
-     * @param int $id
      */
     public function testDeleteOtherUserWithJWT(int $id): void
     {
@@ -152,11 +144,8 @@ class UserTest extends AbstractEndPoint
         self::assertEquals($this->notYourResource, $responseDecode['message']);
     }
 
-
     /**
      * @depends testGetDefaultUser
-     * @param int $id
-     * @return void
      */
     public function testDeleteDefaultUserWithJWT(int $id): void
     {
@@ -201,15 +190,10 @@ class UserTest extends AbstractEndPoint
         self::assertNotEmpty($responseDecode);
     }
 
-
-    /**
-     * @return string
-     */
     public function getPayload(): string
     {
         $fake = Factory::create();
 
         return sprintf($this->userPayload, $fake->email);
     }
-
 }

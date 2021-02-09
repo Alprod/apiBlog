@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Tests\Unit;
-
 
 use App\Entity\Article;
 use App\Entity\User;
@@ -27,6 +25,7 @@ class ArticleTest extends TestCase
         self::assertInstanceOf(Article::class, $response);
         self::assertEquals($value, $this->article->getName());
     }
+
     public function testGetContent()
     {
         $value = 'Super contenu test';
@@ -35,11 +34,12 @@ class ArticleTest extends TestCase
         self::assertInstanceOf(Article::class, $response);
         self::assertEquals($value, $this->article->getContent());
     }
+
     public function testGetAuthor()
     {
         $value = new User();
-        $response  = $this->article->setAuthor($value);
+        $response = $this->article->setAuthor($value);
         self::assertInstanceOf(Article::class, $response);
-        self::assertInstanceOf(User::class,$this->article->getAuthor());
+        self::assertInstanceOf(User::class, $this->article->getAuthor());
     }
 }

@@ -10,9 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    /**
-     * @var User
-     */
     private User $user;
 
     protected function setUp(): void
@@ -51,7 +48,6 @@ class UserTest extends TestCase
 
         self::assertInstanceOf(User::class, $response);
         self::assertEquals($value, $this->user->getPassword());
-
     }
 
     public function testGetArticle()
@@ -63,11 +59,10 @@ class UserTest extends TestCase
         self::assertCount(1, $this->user->getArticles());
         self::assertTrue($this->user->getArticles()->contains($value));
 
-       $response = $this->user->removeArticle($value);
+        $response = $this->user->removeArticle($value);
 
         self::assertInstanceOf(User::class, $response);
         self::assertCount(0, $this->user->getArticles());
         self::assertFalse($this->user->getArticles()->contains($value));
-
     }
 }
