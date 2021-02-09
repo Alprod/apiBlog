@@ -57,6 +57,5 @@ class ArticleTest extends AbstractEndPoint
         self::assertJson($responseContent);
         self::assertNotEmpty($responseDecode);
         self::assertNotSame($res[0], $responseDecode);
-        self::assertContains("author", $responseContent);
     }
 }
