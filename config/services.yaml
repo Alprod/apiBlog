@@ -59,6 +59,7 @@ services:
             - {type: 'App\Exceptions\AuthentificationException' }
         tags:
             - { name: 'miniblog.normalizer' }
+
     miniblog.normalizer.authentification_not_found_exception:
         class: App\Normalizer\NotfoundExceptionNormalizer
         arguments:
