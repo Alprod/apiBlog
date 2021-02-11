@@ -20,7 +20,8 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-.idea
+.idea/
+data/
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
