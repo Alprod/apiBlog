@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     libicu-dev
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install zip pdo_mysql intl opcache
+RUN docker-php-ext-install mysqli pdo
 
 RUN pecl install xdebug-2.9.1 apcu \
     && docker-php-ext-enable xdebug \
