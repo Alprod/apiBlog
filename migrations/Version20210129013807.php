@@ -14,7 +14,7 @@ final class Version20210129013807 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Ajout des champs supplémantaire pour le Users';
     }
 
     public function up(Schema $schema) : void

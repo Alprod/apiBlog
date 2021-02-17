@@ -14,7 +14,7 @@ final class Version20210126220707 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Création de la table articles ainsi que la relation ManyToOne avec Users';
     }
 
     public function up(Schema $schema) : void

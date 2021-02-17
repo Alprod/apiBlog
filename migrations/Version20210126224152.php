@@ -14,7 +14,7 @@ final class Version20210126224152 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Ajout du champs date de création et mise a jour de la date ';
     }
 
     public function up(Schema $schema) : void

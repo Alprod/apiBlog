@@ -14,7 +14,7 @@ final class Version20210201014057 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Ajout d\'un Boolean Status' ;
     }
 
     public function up(Schema $schema) : void
