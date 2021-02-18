@@ -22,6 +22,9 @@ restart: rm start	## redémarrer les containers
 ssh-php:	## Connexion au container php
 	$(PHP_DOCKER_COMPOSE_EXEC) bash
 
+docker-ps:	## Status des containers
+	$(DOCKER_COMPOSE) ps
+
 ## —— Symfony ———————————————————————————————————————————————————————————————
 vendor-install:	## Installation des vendors
 	$(COMPOSER) install
