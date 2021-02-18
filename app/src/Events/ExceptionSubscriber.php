@@ -52,7 +52,9 @@ class ExceptionSubscriber implements EventSubscriberInterface
             }
         }
         if (null === $result) {
-            $result = $this->exceptionNormaliserFormatter->format($exception->getMessage(), Response::HTTP_BAD_REQUEST);
+            $result = $this->exceptionNormaliserFormatter->format(
+                $exception->getMessage(),
+                Response::HTTP_BAD_REQUEST);
         }
 
         $event->setResponse($this->jsonResponse->getJsonResponse(

@@ -1,3 +1,0 @@
-<?php //route_name_78995f70ae221c192a63f466906900b9
-
-return [PHP_INT_MAX, 'api_articles_get_collection'];

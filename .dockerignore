@@ -1,8 +1,0 @@
-# Created by .ignore support plugin (hsz.mobi)
-docker/
-data/
-.idea/
-.git/
-docker-compose.yml
-.gitignore
-Dockerfile
