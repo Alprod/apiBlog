@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: library/mysql:8.0.23
+    image: mysql:8.0.23
     ports:
       - "3307:3306"
     environment:
@@ -24,7 +24,7 @@ services:
       - db
     volumes:
       - ./docker/vhosts:/etc/apache2/sites-enabled
-      - ./docker/php:/usr/local/etc/php
+      - ./app:/var/www
 
   mailer:
     image: schickling/mailcatcher
