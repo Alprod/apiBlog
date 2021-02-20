@@ -1,7 +1,7 @@
 # apiBlog
-![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) :mask:
+![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-Création d'un mini blog Symfony et ApiPlatform
+Création d'un mini blog Symfony et ApiPlatform :rocket:
 
 ## Pré-requis
 
