@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-    const DEFAULT_USER = ['email' => 'alain@orange.fr', 'password' => 'Password43'];
+    const DEFAULT_USER = ['email' => 'alain@alin.fr', 'password' => 'Password43'];
     private UserPasswordEncoderInterface $_encoder;
 
     public function __construct(UserPasswordEncoderInterface $encoder)
@@ -48,6 +48,8 @@ class AppFixtures extends Fixture
             for ($a = 0; $a < random_int(5, 15); ++$a) {
                 $article = (new Article())->setAuthor($user)
                                           ->setContent($faker->text(300))
+                                          ->setImages($faker->image('/tmp',500,350,'',true,'image'))
+                                          ->setVideo($faker->imageUrl(500,350,'',true,'video'))
                                           ->setName($faker->text(50));
                 $manager->persist($article);
             }

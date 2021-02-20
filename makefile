@@ -7,7 +7,7 @@ PHP_DOCKER_COMPOSE_EXEC=$(DOCKER_COMPOSE_EXEC) php
 COMPOSER=$(PHP_DOCKER_COMPOSE_EXEC) php -d memory_limit=-1 /usr/local/bin/composer
 SYMFONY_CONSOLE=$(PHP_DOCKER_COMPOSE_EXEC) bin/console
 
-## —— Docker  ———————————————————————————————————————————————————————————————
+## —— Docker ------------------------------------------------------------------------------
 start:	## Lancer les containers docker
 	$(DOCKER_COMPOSE) up -d
 
@@ -25,7 +25,7 @@ ssh-php:	## Connexion au container php
 docker-ps:	## Status des containers
 	$(DOCKER_COMPOSE) ps
 
-## —— Symfony ———————————————————————————————————————————————————————————————
+## —— Symfony -----------------------------------------------------------------------------
 vendor-install:	## Installation des vendors
 	$(COMPOSER) install
 
@@ -58,6 +58,7 @@ clean-db-test: cc-hard cc-test ## Réinitialiser la base de donnée en environne
 	$(SYMFONY_CONSOLE) d:m:m --no-interaction --env=test
 	$(SYMFONY_CONSOLE) d:f:l --no-interaction --env=test
 
+## —— Tests -------------------------------------------------------------------------------
 test-unit: ## Lancement des tests unitaire
 	$(PHP_DOCKER_COMPOSE_EXEC) bin/phpunit tests/Unit/
 
@@ -66,9 +67,16 @@ test-func: clean-db-test	## Lancement des tests fonctionnel
 
 tests: test-func test-unit	## Lancement de tous tests
 
+## —— Cleaner Code ------------------------------------------------------------------------
+cs-fixer: ## Lancement du php cs fixer
+	$(PHP_DOCKER_COMPOSE_EXEC) vendor/bin/php-cs-fixer fix
+
+cbf: ## Lancement du php cs
+	$(PHP_DOCKER_COMPOSE_EXEC) vendor/bin/phpcbf
+
 cs: ## Lancement du php cs
 	$(PHP_DOCKER_COMPOSE_EXEC) vendor/bin/phpcs -n
 
-## —— Others️ ———————————————————————————————————————————————————————————————
+## —— Others️ ------------------------------------------------------------------------------
 help: ## Liste des commandes
 	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'

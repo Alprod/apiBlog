@@ -1,0 +1,113 @@
+<?php //%255BApp%255CEntity%255CUser%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiFilter'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiFilter')),
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone ($p['Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'repositoryClass' => [
+                'App\\Repository\\UserRepository',
+            ],
+            'name' => [
+                1 => '`user`',
+            ],
+            'collectionOperations' => [
+                2 => [
+                    'get' => [
+                        'normalization_context' => [
+                            'groups' => 'user_read',
+                        ],
+                    ],
+                    'post',
+                ],
+            ],
+            'itemOperations' => [
+                2 => [
+                    'get' => [
+                        'normalization_context' => [
+                            'groups' => 'user_details_read',
+                        ],
+                    ],
+                    'put',
+                    'patch',
+                    'delete',
+                    'put_user_updated' => [
+                        'method' => 'put',
+                        'path' => '/users/{id}/user-updated',
+                        'controller' => 'App\\Controller\\UserUpdatedAt',
+                    ],
+                ],
+            ],
+            'filterClass' => [
+                3 => 'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\SearchFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\DateFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\BooleanFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\NumericFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\RangeFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\ExistsFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\OrderFilter',
+            ],
+            'properties' => [
+                3 => [
+                    'email' => 'partial',
+                    'lastname' => 'start',
+                ],
+                [
+                    'createdAt',
+                ],
+                [
+                    'status',
+                ],
+                [
+                    'age',
+                ],
+                [
+                    'age',
+                ],
+                [
+                    'updateAt',
+                ],
+                [
+                    'id',
+                ],
+            ],
+            'message' => [
+                10 => 'Cette email est déjà utilisé',
+            ],
+            'fields' => [
+                10 => 'email',
+            ],
+            'groups' => [
+                10 => [
+                    'Default',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+        $o[3],
+        $o[4],
+        $o[5],
+        $o[6],
+        $o[7],
+        $o[8],
+        $o[9],
+        $o[10],
+    ],
+    []
+); }];
