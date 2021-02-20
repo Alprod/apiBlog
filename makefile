@@ -7,6 +7,8 @@ PHP_DOCKER_COMPOSE_EXEC=$(DOCKER_COMPOSE_EXEC) php
 COMPOSER=$(PHP_DOCKER_COMPOSE_EXEC) php -d memory_limit=-1 /usr/local/bin/composer
 SYMFONY_CONSOLE=$(PHP_DOCKER_COMPOSE_EXEC) bin/console
 
+init: start vendor-install clean-db	## Inintialisation du projet
+
 ## —— Docker ------------------------------------------------------------------------------
 start:	## Lancer les containers docker
 	$(DOCKER_COMPOSE) up -d
