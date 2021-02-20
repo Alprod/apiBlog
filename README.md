@@ -1,19 +1,21 @@
 # apiBlog
-![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
+![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg) :mask:
 
 Creation d'un mini blog Symfony et ApiPlatform
 
 ## Pré-requis
 
 -   **Docker**
+-   **PHP 7.4**
+-   **Composer**
 -   **Make** Dernière version
 -   **Symfony**
 
 ## Instalation
-Rien de très complexe seulement suivre les différentes etape du makefile en fonction de vos besoin  
-Pour une initialisation compléte :
-
-```make init```
+Rien de très complexe seulement suivre les différentes étapes du makefile en fonction de vos besoins
+Pas de Workflow initialiser à vous de mettre en place votre **git action** en sachant que dans le projet PHPCS et PHP-CS-FIXER sont installé
+Pour une initialisation complète :
+```$ make init```
 
 ## Auteurs
 
