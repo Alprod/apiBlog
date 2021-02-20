@@ -3,6 +3,12 @@
 
 Creation d'un mini blog Symfony et ApiPlatform
 
+## Pré-requis
+
+-   **Docker**
+-   **Make** Dernière version
+-   **Symfony**
+
 ## Auteurs
 
 -   **Germain Alain** _alias_ [@Alprod](https://github.com/Alprod)
@@ -10,6 +16,6 @@ Creation d'un mini blog Symfony et ApiPlatform
 
 ## Remerciments
 
-Je tiens a remercier Ben Open pour ces tutos Youtube [@BenOpen](https://www.youtube.com/channel/UCl-eoZ97KHBFuiy2CxxI2YA) 
+Je tiens a remercier :tada: Ben Open :tada: pour ces tutos Youtube [@BenOpen](https://www.youtube.com/channel/UCl-eoZ97KHBFuiy2CxxI2YA) 
 qui m'ont aidé dans le processus de mon apprentissage PHP/SYMFONY
 -   **BenOpen** _alias_ [@Ben Open](https://gitlab.com/benopen)
