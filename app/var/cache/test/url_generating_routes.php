@@ -21,4 +21,5 @@ return [
     'api_users_delete_item' => [['id', '_format'], ['_controller' => 'api_platform.action.delete_item', '_format' => null, '_stateless' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_identifiers' => ['id'], '_api_has_composite_identifier' => false, '_api_item_operation_name' => 'delete'], [], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '[^/\\.]++', 'id', true], ['text', '/api/users']], [], []],
     'api_users_put_user_updated_item' => [['id'], ['_controller' => 'App\\Controller\\UserUpdatedAt', '_format' => null, '_stateless' => null, '_api_resource_class' => 'App\\Entity\\User', '_api_identifiers' => ['id'], '_api_has_composite_identifier' => false, '_api_item_operation_name' => 'put_user_updated'], [], [['text', '/user-updated'], ['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], []],
     'api_login_check' => [[], [], [], [['text', '/api/login_check']], [], []],
+    'gesdinet_jwt_refresh_token' => [[], ['_controller' => 'gesdinet.jwtrefreshtoken::refresh'], [], [['text', '/api/token/refresh']], [], []],
 ];

@@ -52,6 +52,21 @@ class Article
      */
     private UserInterface $author;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $groupFigure;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $images;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $video;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -89,6 +104,42 @@ class Article
     public function setAuthor(UserInterface $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getGroupFigure(): ?string
+    {
+        return $this->groupFigure;
+    }
+
+    public function setGroupFigure(?string $groupFigure): self
+    {
+        $this->groupFigure = $groupFigure;
+
+        return $this;
+    }
+
+    public function getImages(): ?string
+    {
+        return $this->images;
+    }
+
+    public function setImages(?string $images): self
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): self
+    {
+        $this->video = $video;
 
         return $this;
     }

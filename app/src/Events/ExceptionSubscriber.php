@@ -7,6 +7,7 @@ namespace App\Events;
 use App\Factory\JsonResponseInterface;
 use App\Normalizer\NormalizerInterface;
 use App\Services\ExceptionNormaliserFormatterInterface;
+use Exception;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
@@ -41,9 +42,8 @@ class ExceptionSubscriber implements EventSubscriberInterface
     {
         $result = null;
 
-        /** @var \Exception $exception */
+        /** @var Exception $exception */
         $exception = $event->getThrowable();
-
         /** @var NormalizerInterface $normaliser */
         foreach (self::$normalisers as $key => $normaliser) {
             if ($normaliser->supports($exception)) {
@@ -54,7 +54,8 @@ class ExceptionSubscriber implements EventSubscriberInterface
         if (null === $result) {
             $result = $this->exceptionNormaliserFormatter->format(
                 $exception->getMessage(),
-                Response::HTTP_BAD_REQUEST);
+                Response::HTTP_BAD_REQUEST
+            );
         }
 
         $event->setResponse($this->jsonResponse->getJsonResponse(

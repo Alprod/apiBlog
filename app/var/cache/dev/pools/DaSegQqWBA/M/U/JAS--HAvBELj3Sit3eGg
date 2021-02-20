@@ -1,0 +1,61 @@
+<?php //%255BApp%255CEntity%255CUser%2524password%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+        clone ($p['Symfony\\Component\\Serializer\\Annotation\\Groups'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Serializer\\Annotation\\Groups')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\NotBlank'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\NotBlank')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Length'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Regex'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Regex')),
+    ],
+    null,
+    [
+        'Symfony\\Component\\Serializer\\Annotation\\Groups' => [
+            'groups' => [
+                1 => [
+                    'user_details_read',
+                ],
+            ],
+        ],
+        'stdClass' => [
+            'message' => [
+                2 => 'Le Mot de Passe est obligatoire',
+                4 => 'Désolé mais {{ value }}, doit comporter au moins 8 caractères, 1 chiffre, un caractère majuscule, un caractère minuscule.',
+            ],
+            'groups' => [
+                2 => [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+                [
+                    'Default',
+                ],
+            ],
+            'maxMessage' => [
+                3 => 'Vous dépassez la longuer maximal de votre Mot de Passe qui est de {{ limit }} caractères',
+            ],
+            'minMessage' => [
+                3 => 'Votre Mot de Passe doit contenir au minimum {{ limit }} caractères',
+            ],
+            'max' => [
+                3 => 16,
+            ],
+            'min' => [
+                3 => 8,
+            ],
+            'pattern' => [
+                4 => '/^\\S*(?=\\S*[a-z])(?=\\S*[A-Z])(?=\\S*[\\d])\\S*$/',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+        $o[3],
+        $o[4],
+    ],
+    []
+); }];

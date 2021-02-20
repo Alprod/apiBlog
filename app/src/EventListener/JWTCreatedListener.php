@@ -17,7 +17,7 @@ class JWTCreatedListener
 
     public function onJWTCreated(JWTCreatedEvent $event)
     {
-        if(null !== $this->user){
+        if (null !== $this->user) {
             $payload = $event->getData();
             $payload['createdAt'] = $this->user->getCreatedAt();
             $event->setData($payload);
