@@ -9,6 +9,12 @@ Creation d'un mini blog Symfony et ApiPlatform
 -   **Make** Dernière version
 -   **Symfony**
 
+## Instalation
+Rien de très complexe seulement suivre les différentes etape du makefile en fonction de vos besoin
+Pour une initialisation compléte :
+
+```make init```
+
 ## Auteurs
 
 -   **Germain Alain** _alias_ [@Alprod](https://github.com/Alprod)
