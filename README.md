@@ -10,7 +10,8 @@ Creation d'un mini blog Symfony et ApiPlatform
 -   **Symfony**
 
 ## Instalation
-Rien de très complexe seulement suivre les différentes etape du makefile en fonction de vos besoin   Pour une initialisation compléte :
+Rien de très complexe seulement suivre les différentes etape du makefile en fonction de vos besoin  
+Pour une initialisation compléte :
 
 ```make init```
 
@@ -21,5 +22,6 @@ Rien de très complexe seulement suivre les différentes etape du makefile en fo
 
 ## Remerciments
 
-Je tiens a remercier :tada: Ben Open :tada: pour ces tutos Youtube [@BenOpen](https://www.youtube.com/channel/UCl-eoZ97KHBFuiy2CxxI2YA)  qui m'ont aidé dans le processus de mon apprentissage PHP/SYMFONY
+Je tiens a remercier :tada: Ben Open :tada: pour ces tutos Youtube [@BenOpen](https://www.youtube.com/channel/UCl-eoZ97KHBFuiy2CxxI2YA)  
+qui m'ont aidé dans le processus de mon apprentissage PHP/SYMFONY
 -   **BenOpen** _alias_ [@Ben Open](https://gitlab.com/benopen)
